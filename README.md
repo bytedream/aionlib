@@ -7,7 +7,7 @@
 
 # Introduction
 
-**aionlib** is the official library support for the [aion](https://github.com/blueShard-dev/aion_project)
+**aionlib** is the official library support [aion](https://github.com/blueShard-dev/aion)
 
 # Installation
 
