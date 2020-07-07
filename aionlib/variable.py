@@ -35,7 +35,7 @@ class Variable:
         else:
             self._aion_open_variable_file = None
 
-    def add_variable(self, variable_name, value):
+    def add_variable(self, variable_name, value) -> None:
         """
         adds a variable
 
@@ -57,7 +57,7 @@ class Variable:
             self._aion_open_variable_file = open(_aion_variable_file, "rw")
         self._user_variables[variable_name] = value
 
-    def close(self):
+    def close(self) -> None:
         """
         remove the file with the saved variables
 
@@ -71,7 +71,7 @@ class Variable:
             remove(_aion_variable_file)
             self._aion_open_variable_file = None
 
-    def get_value(self, variable_name):
+    def get_value(self, variable_name) -> str:
         """
         get the value of an variable
 
@@ -101,7 +101,7 @@ class Variable:
                     return self._user_variables[variable_name]
                 raise KeyError("the variable " + variable_name + " doesn't exists")
 
-    def inititalize_variables(self, additional_variables={}):
+    def inititalize_variables(self, additional_variables={}) -> None:
         """
         creates a new file for the variables to store
 
@@ -121,7 +121,7 @@ class Variable:
             self._aion_open_variable_file.writelines(write_list)
             self._aion_open_variable_file = open(_aion_variable_file, "w+")
 
-    def remove_variable(self, variable_name):
+    def remove_variable(self, variable_name) -> None:
         """
         removes a variable
 
@@ -156,7 +156,7 @@ class Variable:
         if found is False:
             raise KeyError("the variable " + variable_name + " doesn't exists")
 
-    def set_value(self, variable_name, value):
+    def set_value(self, variable_name, value) -> None:
         """
         set a new value to a variable
 
