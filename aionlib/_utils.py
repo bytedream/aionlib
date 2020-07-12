@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 
-from glob import glob as _glob
+from ._errors import AionNotInstalledError
+from . import _variables
 
+from glob import glob as _glob
 from xml.dom import minidom as _minidom
 import xml.etree.ElementTree as _ET
 
@@ -35,13 +37,26 @@ def import_aion_internal_file(fname: str):
 
 def no_aion() -> None:
     """
-    a function which get called from some 'aionlib' functions if aion is not installed but required
+    get called from some 'aionlib' functions if aion is not installed but required
 
     :return: None
 
     :since: 0.1.0
     """
-    pass
+    if _variables.aion_not_installed_error:
+        raise AionNotInstalledError()
+
+
+def raise_aion_not_installed_error(raise_error: bool) -> None:
+    """
+    set if AionNotInstalledError should be raised when calling _utils.no_aion() (false is default)
+
+    :param raise_error: bool
+        yes if AionNotInstalledError should be raised when calling _utils.no_aion(), no if not
+        syntax: <bool>
+        example: True
+    """
+    _variables.aion_not_installed_error = raise_error
 
 
 def start_check() -> None:
@@ -57,7 +72,7 @@ def start_check() -> None:
     from platform import system
 
     if system().lower() != "linux":
-        print(Fore.RED + "It seems like you not using Linux (Raspbian on Raspberry Pi recommended). To use the whole library run this library on Linux (recommended Raspbian on Raspberry Pi)" + Fore.RESET)
+        print(Fore.RED + "It seems like you not using Linux (Raspberry Pi OS on Raspberry Pi recommended). To use the whole library run this library on Linux (recommended Raspbian on Raspberry Pi)" + Fore.RESET)
         start_check.is_linux = False
     else:
         start_check.is_linux = True
