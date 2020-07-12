@@ -29,7 +29,6 @@ def speech_output(speech_output: str) -> None:
     :since: 0.1.0
     """
     if is_aion:
-        from ._utils import import_aion_internal_file
         return import_aion_internal_file("__init__").speech_output(speech_output)
     else:
         from ._utils import no_aion
