@@ -11,7 +11,7 @@ _start_check()
 is_aion = _start_check.is_aion
 is_linux = _start_check.is_linux
 
-from ._utils import aion_data_path, aion_path, import_aion_internal_file, raise_aion_not_installed_error
+from ._utils import aion_data_path, aion_path, raise_aion_not_installed_error
 
 from . import config, language, logging, plugin, utils, variable
 
@@ -29,6 +29,7 @@ def speech_output(speech_output: str) -> None:
     :since: 0.1.0
     """
     if is_aion:
+        from ._utils import import_aion_internal_file
         return import_aion_internal_file("__init__").speech_output(speech_output)
     else:
         from ._utils import no_aion
